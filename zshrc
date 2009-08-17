@@ -85,6 +85,10 @@ bindkey '\e[6~' end-of-line
 # incremental backward search
 bindkey "^R"   history-incremental-search-backward
 
+# sane undo for vi bindings
+bindkey -M vicmd  'u' undo
+bindkey -M vicmd '^r' redo
+
 
 # Escape-Prefixed grml bindings for vicmd {{{2
 #-------------------------------------------------------------------------------

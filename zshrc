@@ -89,6 +89,8 @@ bindkey "^R"   history-incremental-search-backward
 bindkey -M vicmd  'u' undo
 bindkey -M vicmd '^r' redo
 
+bindkey -M viins '^X.' insert-last-word
+
 
 # Escape-Prefixed grml bindings for vicmd {{{2
 #-------------------------------------------------------------------------------

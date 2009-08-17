@@ -57,22 +57,60 @@ if [[ "$TERM" != emacs ]] ; then
 fi
 
 
-[[ "${EDITOR}" == *vim   ]]  && bindkey -v       #    vi keybindings
-[[ "${EDITOR}" == *emacs ]]  && bindkey -e       # emacs keybindings
+# this seems to reset any previously bound keys in grml_zshrc
+# so it might be better to set it in there
+#[[ "${EDITOR}" == *vim   ]]  && bindkey -v       #    vi keybindings
+#[[ "${EDITOR}" == *emacs ]]  && bindkey -e       # emacs keybindings
 
-# incremental backward search
-bindkey "^R"   history-incremental-search-backward
 
-bindkey "\e[A" up-line-or-history
-bindkey "\e[B" down-line-or-history
+# screen
+bindkey '\e[1~' beginning-of-line       # home
+bindkey '\e[4~' end-of-line             # end
+bindkey "\e[A"  up-line-or-history
+bindkey "\e[B"  down-line-or-history
 
 bindkey '\e[3~' delete-char             # Del
 bindkey '\e[2~' overwrite-mode          # Insert
+
+# rxvt
+bindkey '\e[7~' beginning-of-line       # home
+bindkey '\e[8~' end-of-line             # end
 
 
 # map composite keys for home/end (laptop only?)
 bindkey '\e[5~' beginning-of-line
 bindkey '\e[6~' end-of-line
+
+
+# incremental backward search
+bindkey "^R"   history-incremental-search-backward
+
+
+# Escape-Prefixed grml bindings for vicmd {{{2
+#-------------------------------------------------------------------------------
+
+#k# Trigger menu-complete
+bindkey -M vicmd ',i' menu-complete  # menu completion via esc-i
+
+# press esc-e for editing command line in $EDITOR or $VISUAL
+if is4 && zrcautoload edit-command-line && zle -N edit-command-line ; then
+    #k# Edit the current line in \kbd{\$EDITOR}
+    bindkey -M viins '^e' edit-command-line
+    bindkey -M vicmd ',e' edit-command-line
+fi
+
+# FIXME: good keybinding for this?
+if is4 && [[ -n ${(k)modules[zsh/complist]} ]] ; then
+    #k# menu selection: pick item but stay in the menu
+    bindkey -M menuselect '\e^M' accept-and-menu-complete
+fi
+
+#k# Insert last typed word
+bindkey -M viins "^Xl" insert-last-typed-word
+bindkey -M vicmd ",l" insert-last-typed-word
+
+
+#-------------------------------------------------------------------------------
 
 #===============================================================================
 

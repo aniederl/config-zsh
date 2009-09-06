@@ -19,6 +19,8 @@
 
 # source GRML's zshrc {{{1
 GRML_WARN_SKEL=0
+GRML_ALWAYS_LOAD_ALL=1
+ZSH_NO_DEFAULT_LOCALE=1
 
 [[ -r /etc/zsh/grml_zshrc ]]     && GRML_ZSHRC=/etc/zsh/grml_zshrc
 [[ -r ${HOME}/.zsh/grml_zshrc ]] && GRML_ZSHRC=${HOME}/.zsh/grml_zshrc

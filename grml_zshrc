@@ -3139,8 +3139,8 @@ if [[ -z "$BROWSER" ]] ; then
 fi
 
 #m# v QTDIR \kbd{/usr/share/qt[34]}\quad [for non-root only]
-[[ -d /usr/share/qt3 ]] && export QTDIR=/usr/share/qt3
-[[ -d /usr/share/qt4 ]] && export QTDIR=/usr/share/qt4
+#[[ -d /usr/share/qt3 ]] && export QTDIR=/usr/share/qt3
+#[[ -d /usr/share/qt4 ]] && export QTDIR=/usr/share/qt4
 
 # support running 'jikes *.java && jamvm HelloWorld' OOTB:
 #v# [for non-root only]

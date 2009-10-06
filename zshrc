@@ -200,8 +200,8 @@ fi
 [ -x /usr/bin/htop ] && alias top='/usr/bin/htop'
 
 # use the generic colouriser (grc) if available
-if [[ "$TERM" != dumb ]] && [[ -x /usr/bin/grc ]] ; then
-    alias cl='/usr/bin/grc -es --colour=auto'
+if [[ "$TERM" != dumb ]] && [[ -x $(which grc) ]] ; then
+    alias cl='grc -es --colour=auto'
 
     alias configure='cl ./configure'
     alias diff='cl diff -u'

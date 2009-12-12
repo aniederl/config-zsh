@@ -264,6 +264,8 @@ then
   ln -s ${SSH_AUTH_SOCK} ${agent_sock}
 fi
 
+export SSH_AUTH_SOCK=${HOME}/.ssh/sockets/agent-socket
+
 #===============================================================================
 
 

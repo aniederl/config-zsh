@@ -134,7 +134,9 @@ if isgentoo ; then
   hash -d ekey=/etc/portage/package.keywords
   hash -d euse=/etc/portage/package.use
   hash -d emask=/etc/portage/package.mask
-  hash -d overlay=/usr/local/portage/layman/private
+  hash -d oprivate=/usr/local/portage/layman/private
+  hash -d omisc=/usr/local/portage/layman/misc
+  hash -d omodified=/usr/local/portage/layman/modified
 fi
 
 #===============================================================================

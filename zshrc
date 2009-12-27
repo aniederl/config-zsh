@@ -244,6 +244,16 @@ zstyle ':completion:*:(jobs|directory-stack|indexes)' list-colors '=(#b)(*) -- (
 zstyle ':completion:*:(options|values)' list-colors '=(#b)(*)-- (*)=35;1=31;1=33;1' '=*=31;1'
 zstyle ':completion:*::lp*:jobs'        list-colors '=(#b)* [0-9] ##([^     ]##) ##([^      ]##) ##([^      ]##) ##(*)=35=32=31;1=33;1=32'
 
+# manual completion invocation
+zle -C complete-files complete-word _generic
+zstyle ':completion:complete-files:*' completer _files
+bindkey '^x^f' complete-files
+
+zle -C complete-history complete-word _generic
+zstyle ':completion:complete-history:*' completer _history
+bindkey '^x^h' complete-history
+
+
 #===============================================================================
 
 

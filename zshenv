@@ -23,7 +23,8 @@ unset ROOTPATH
 
 
 # zsh regular check settings {{{1
-export MAIL=${MAIL:-${HOME}/.maildir}
+#export MAIL=${MAIL:-${HOME}/.maildir}
+export MAIL=${HOME}/.maildir
 mailpath=(${mailpath:-$MAIL/new})
 # check every 30 seconds for new mail
 MAILCHECK=${MAILCHECK:-30}

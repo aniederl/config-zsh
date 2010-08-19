@@ -157,6 +157,7 @@ alias cp="cp -i"
 alias wget='wget -c'
 
 # grep aliases
+alias grep='grep --color=auto --exclude=tags --exclude=cscope.out --exclude=types*.vim'
 alias rgrep='grep -r'
 alias pgrep='pgrep -l'
 

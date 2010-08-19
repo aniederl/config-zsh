@@ -1,5 +1,5 @@
 # /etc/zsh/zprofile
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/files/zprofile,v 1.5 2008/05/23 12:02:51 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/files/zprofile-1,v 1.1 2010/08/15 12:21:56 tove Exp $
 
 shopts=$-
 setopt nullglob

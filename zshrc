@@ -170,7 +170,8 @@ alias confcat="sed -e 's/#.*//;/^\s*$/d' "$@""
 alias genpass='head -n10 /dev/urandom | uuencode -m - | head -n6 | tail -n5'
 
 alias g='git'
-alias gk='gitk'
+alias gk='gitk &'
+alias gka='gitk --all &'
 compdef g=git
 
 # screen

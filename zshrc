@@ -363,11 +363,19 @@ rmpop() {
 #-------------------------------------------------------------------------------
 beamer() {
   if [[ "${1}" == "on" ]] ; then
-    xrandr --output LVDS1 --mode 1024x768 --rate 60.0
-    xrandr --output VGA1  --mode 1024x768 --rate 60.0
+    xrandr --output LVDS1 --mode 1024x768 --rate 60.0 --output VGA1 --same-as LVDS1 --auto --mode 1024x768
   elif [[ "${1}" == "off" ]] ; then
-    xrandr --output VGA1  --off
-    xrandr --output LVDS1 --mode 1440x900 --rate 60.2
+    xrandr --output LVDS1 --auto --output VGA1 --off
+  else
+    echo "Usage: ${0} on|off"
+    echo ""
+  fi
+}
+monitor() {
+  if [[ "${1}" == "on" ]] ; then
+    xrandr --output LVDS1 --primary --auto --output VGA1 --right-of LVDS1 --auto
+  elif [[ "${1}" == "off" ]] ; then
+    xrandr --output VGA1 --off
   else
     echo "Usage: ${0} on|off"
     echo ""

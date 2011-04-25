@@ -270,16 +270,7 @@ fi
 
 
 # setup ssh agent socket
-if [[ -n "${SSH_AUTH_SOCK}" ]] && \
-   [[ -z "${STY}" ]] && \
-   [[ ! -e "$(readlink -f ${HOME}/.ssh/sockets/agent-socket)" ]]
-then
-  local agent_sock=${HOME}/.ssh/sockets/agent-socket
-  rm -f ${agent_sock}
-  ln -s ${SSH_AUTH_SOCK} ${agent_sock}
-fi
-
-export SSH_AUTH_SOCK=${HOME}/.ssh/sockets/agent-socket
+eval $(keychain --quiet --eval)
 
 #===============================================================================
 

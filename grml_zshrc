@@ -584,7 +584,11 @@ export MAIL=${MAIL:-/var/mail/$USER}
 export SHELL='/bin/zsh'
 
 # color setup for ls:
-check_com -c dircolors && eval $(dircolors -b)
+if [[ -r /etc/DIR_COLORS ]] ; then
+    check_com -c dircolors && eval $(dircolors -b /etc/DIR_COLORS)
+else
+    check_com -c dircolors && eval $(dircolors -b)
+fi
 # color setup for ls on OS X:
 isdarwin && export CLICOLOR=1
 

@@ -50,12 +50,12 @@ setopt prompt_percent
 #===============================================================================
 if [[ "$TERM" != emacs ]] ; then
 	[[ -z "$terminfo[kdch1]" ]] || bindkey -M vicmd "$terminfo[kdch1]" delete-char
-	[[ -z "$terminfo[cuu1]"  ]] || bindkey -M viins "$terminfo[cuu1]"  up-line-or-history
-	[[ -z "$terminfo[kcuu1]" ]] || bindkey -M viins "$terminfo[kcuu1]" up-line-or-history
-	[[ -z "$terminfo[kcud1]" ]] || bindkey -M viins "$terminfo[kcud1]" down-line-or-history
+	[[ -z "$terminfo[cuu1]"  ]] || bindkey -M viins "$terminfo[cuu1]"  up-line-or-search
+	[[ -z "$terminfo[kcuu1]" ]] || bindkey -M viins "$terminfo[kcuu1]" up-line-or-search
+	[[ -z "$terminfo[kcud1]" ]] || bindkey -M viins "$terminfo[kcud1]" down-line-or-search
 	# ncurses stuff:
-	[[ "$terminfo[kcuu1]" == $'\eO'* ]] && bindkey -M viins "${terminfo[kcuu1]/O/[}" up-line-or-history
-	[[ "$terminfo[kcud1]" == $'\eO'* ]] && bindkey -M viins "${terminfo[kcud1]/O/[}" down-line-or-history
+	[[ "$terminfo[kcuu1]" == $'\eO'* ]] && bindkey -M viins "${terminfo[kcuu1]/O/[}" up-line-or-search
+	[[ "$terminfo[kcud1]" == $'\eO'* ]] && bindkey -M viins "${terminfo[kcud1]/O/[}" down-line-or-search
 fi
 
 
@@ -64,12 +64,15 @@ fi
 #[[ "${EDITOR}" == *vim   ]]  && bindkey -v       #    vi keybindings
 #[[ "${EDITOR}" == *emacs ]]  && bindkey -e       # emacs keybindings
 
+# match current cmdline to history
+bindkey '\e[A' up-line-or-search
+bindkey '\e[B' down-line-or-search
 
 # screen
 bindkey '\e[1~' beginning-of-line       # home
 bindkey '\e[4~' end-of-line             # end
-bindkey "\e[A"  up-line-or-history
-bindkey "\e[B"  down-line-or-history
+bindkey "\e[A"  up-line-or-search
+bindkey "\e[B"  down-line-or-search
 
 bindkey '\e[3~' delete-char             # Del
 bindkey '\e[2~' overwrite-mode          # Insert

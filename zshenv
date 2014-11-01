@@ -5,7 +5,10 @@
 ##############################################################################
 
 
+#===============================================================================
 # gentoo profile.env {{{1
+#===============================================================================
+
 if [[ -r /etc/gentoo-release ]] ; then
   [[ -r /etc/profile.env ]] && source /etc/profile.env
 else
@@ -13,7 +16,10 @@ else
 	ROOTPATH=${PATH}
 fi
 
-# setup $PATH {{{1
+#===============================================================================
+# $PATH {{{1
+#===============================================================================
+
 if (( EUID == 0 )); then
 	export PATH="/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:${ROOTPATH}"
 else
@@ -21,8 +27,10 @@ else
 fi
 unset ROOTPATH
 
-
+#===============================================================================
 # zsh regular check settings {{{1
+#===============================================================================
+
 #export MAIL=${MAIL:-${HOME}/.maildir}
 export MAIL=${HOME}/.maildir
 mailpath=(${mailpath:-$MAIL/new})
@@ -32,7 +40,7 @@ MAILCHECK=${MAILCHECK:-30}
 # watch login records for everyone but me
 watch=(${watch:-notme})
 
-
+#===============================================================================
 # environment variables {{{1
 #===============================================================================
 
@@ -48,14 +56,28 @@ export PAGER=${PAGER:-less}
 # custom /etc/screenrc
 export SYSSCREENRC=${SYSSCREENRC:-/etc/screen/screenrc}
 
+#-------------------------------------------------------------------------------
+# ack {{{2
+#-------------------------------------------------------------------------------
 
+# use a pager
+export ACK_PAGER="less"
+export ACK_PAGER_COLOR="less -R"
+
+# custom colors
+export ACK_COLOR_MATCH="black on_cyan"
+export ACK_COLOR_LINENO="yellow on_black"
+
+#-------------------------------------------------------------------------------
 # lesspipe {{{2
+#-------------------------------------------------------------------------------
 if [[ -x /usr/bin/lesspipe.sh ]] ; then
     export LESSOPEN="|lesspipe.sh %s"
 elif [[ -x /usr/bin/lesspipe ]] ; then
     export LESSOPEN="|lesspipe %s"
 fi
 
+#-------------------------------------------------------------------------------
 # texdoc {{{2
 #-------------------------------------------------------------------------------
 
@@ -72,7 +94,6 @@ export TEXDOCVIEW_ps="  ${PS_VIEWER}   %s"
 export TEXDOCVIEW_html="${HTML_VIEWER} %s"
 
 #-------------------------------------------------------------------------------
-
 # zsh vars {{{2
 #-------------------------------------------------------------------------------
 
@@ -86,7 +107,15 @@ export ZSHDIR=$HOME/.zsh
 # automatically remove duplicates from these arrays
 typeset -U path cdpath fpath manpath
 
-#-------------------------------------------------------------------------------
-
 #===============================================================================
+
+shopts=$-
+setopt nullglob
+for sh in /etc/profile.d/*.sh ; do
+       [ -r "$sh" ] && . "$sh"
+done
+unsetopt nullglob
+set -$shopts
+unset sh shopts
+
 

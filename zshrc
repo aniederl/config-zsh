@@ -260,6 +260,8 @@ zle -C complete-history complete-word _generic
 zstyle ':completion:complete-history:*' completer _history
 bindkey '^x^h' complete-history
 
+# hide mplayerthumbsconfig utility and backup files from command completion
+zstyle ':completion:*:complete:-command-::commands' ignored-patterns '(mplayerthumbsconfig|*\~)'
 
 #===============================================================================
 
@@ -439,7 +441,9 @@ promptinit && prompt gentoo
 
 #===============================================================================
 
+# }}}
+
+alias ddstat='DDPID=$! ; while kill -USR1 $DDPID ; do sleep 5 ; done'
 
 ## END OF FILE #################################################################
 # vim:foldmethod=marker
-

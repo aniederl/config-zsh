@@ -61,8 +61,8 @@ export SYSSCREENRC=${SYSSCREENRC:-/etc/screen/screenrc}
 #-------------------------------------------------------------------------------
 
 # use a pager
-export ACK_PAGER="less"
-export ACK_PAGER_COLOR="less -R"
+export ACK_PAGER="less -F"
+export ACK_PAGER_COLOR="less -F -R"
 
 # custom colors
 export ACK_COLOR_MATCH="black on_cyan"

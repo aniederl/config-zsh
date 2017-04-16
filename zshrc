@@ -445,5 +445,7 @@ promptinit && prompt gentoo
 
 alias ddstat='DDPID=$! ; while kill -USR1 $DDPID ; do sleep 5 ; done'
 
+alias mux='tmuxinator'
+
 ## END OF FILE #################################################################
 # vim:foldmethod=marker

@@ -137,9 +137,9 @@ if isgentoo ; then
   hash -d ekey=/etc/portage/package.keywords
   hash -d euse=/etc/portage/package.use
   hash -d emask=/etc/portage/package.mask
-  hash -d oprivate=/usr/local/portage/layman/private
-  hash -d omisc=/usr/local/portage/layman/misc
-  hash -d omodified=/usr/local/portage/layman/modified
+  hash -d oprivate=/var/lib/layman/private
+  hash -d omisc=/var/lib/layman/misc
+  hash -d omodified=/var/lib/layman/modified
 fi
 
 #===============================================================================
@@ -196,7 +196,8 @@ if isgentoo ; then
 	compdef _portage uemerge=emerge
 
 	alias smerge='emerge --update --reinstall changed-use --ask @system'
-	alias wmerge='emerge --update --deep --reinstall changed-use --ask --with-bdeps y @world'
+	alias wmerge='emerge --update --deep --ask --with-bdeps y @world'
+	alias wnmerge='emerge --update --deep --reinstall changed-use --ask --with-bdeps y @world'
 fi
 #-------------------------------------------------------------------------------
 

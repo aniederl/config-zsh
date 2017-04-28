@@ -448,5 +448,21 @@ alias ddstat='DDPID=$! ; while kill -USR1 $DDPID ; do sleep 5 ; done'
 alias mux='tmuxinator'
 alias tm='tmux'
 
+if (( $+commands[rg] )) ; then
+  FZF_DEFAULT_COMMAND='rg --files --follow --glob "!.git/*"'
+elif (( $+commands[ag] )) ; then
+  FZF_DEFAULT_COMMAND='ag -g ""'
+else
+  FZF_DEFAULT_COMMAND='find . -path "*/\.*" -prune -o type f -print -o -type l -print | sed s/^..//'
+fi
+
+export FZF_DEFAULT_COMMAND="(git ls-tree -r --name-only HEAD || ${FZF_DEFAULT_COMMAND}) 2>/dev/null"
+
+if [[ -n ${FZF_DEFAULT_COMMAND} ]] ; then
+  export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
+fi
+
+[[ -r ~/.fzf.zsh ]] && source ~/.fzf.zsh
+
 ## END OF FILE #################################################################
 # vim:foldmethod=marker

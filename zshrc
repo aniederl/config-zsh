@@ -464,5 +464,10 @@ fi
 
 [[ -r ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
+alias sc=systemctl
+alias jc=journalctl
+compdef sc=systemctl
+compdef jc=journalctl
+
 ## END OF FILE #################################################################
 # vim:foldmethod=marker

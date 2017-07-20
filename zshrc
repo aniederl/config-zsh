@@ -464,10 +464,12 @@ fi
 
 [[ -r ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
-alias sc=systemctl
-alias jc=journalctl
-compdef sc=systemctl
-compdef jc=journalctl
+if [[ -x =systemctl ]] ; then
+  alias sc=systemctl
+  alias jc=journalctl
+  compdef sc=systemctl
+  compdef jc=journalctl
+fi
 
 ## END OF FILE #################################################################
 # vim:foldmethod=marker

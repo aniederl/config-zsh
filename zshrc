@@ -276,7 +276,9 @@ fi
 
 
 # setup ssh agent socket
-eval $(keychain --quiet --eval)
+if (( $+commands[keychain] )) ; then
+  eval $(keychain --quiet --eval)
+fi
 
 #===============================================================================
 
